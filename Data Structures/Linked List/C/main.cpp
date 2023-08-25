@@ -4,15 +4,15 @@ class Node{
 public:
     int data;
     Node* next;
-    Node(int data){
+    explicit Node(int data){
         this -> data = data;
         this -> next = nullptr;
     };
 };
 class LinkedList{
 private:
-    Node* head;
-    Node* tail;
+    Node* head{};
+    Node* tail{};
     int size = 0;
     bool is_empty() const{
         return this -> size == 0;
@@ -30,7 +30,7 @@ public:
         this -> size++;
     }
     void display(){
-        std::string printable = "";
+        std::string printable;
         Node* current = this -> head;
         while(current){
             printable += std::to_string(current-> data);
@@ -41,7 +41,7 @@ public:
     };
 };
 int main(){
-    LinkedList* list = new LinkedList();
+    auto* list = new LinkedList();
     list->append(10);
     list->append(20);
     list->append(30);
