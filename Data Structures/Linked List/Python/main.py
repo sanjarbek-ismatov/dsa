@@ -23,6 +23,12 @@ class LinkedList:
             self.tail = self.tail.next
         self.size += 1
 
+    def prepend(self, data):
+        node = Node(data)
+        node.next = self.head
+        self.head = node
+        self.size += 1
+
     def display(self):
         printable = ""
         current = self.head
@@ -33,7 +39,10 @@ class LinkedList:
 
 
 llist = LinkedList()
-llist.append(10)
-llist.append(20)
-llist.append(30)
+# llist.append(10)
+# llist.append(20)
+# llist.append(30)
+llist.prepend(10)
+llist.prepend(20)
+llist.prepend(30)
 llist.display()
