@@ -46,6 +46,7 @@ public:
         }
         current->next = nullptr;
         this ->tail = current;
+        this -> size--;
         return found;
     }
     void display(){

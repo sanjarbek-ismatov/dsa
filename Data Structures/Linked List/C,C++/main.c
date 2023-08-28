@@ -35,6 +35,18 @@ void prepend(struct LinkedList* list, int data){
     list -> head = node;
     list -> size++;
 }
+int* pop(struct LinkedList* list){
+    if(is_empty(*list))return NULL;
+    int* found = &list -> tail -> data;
+    struct Node* current = list -> head;
+    while (current->next && current -> next -> next != list -> tail){
+        current = current -> next;
+    }
+    current->next = NULL;
+    list -> tail = current;
+    list -> size--;
+    return found;
+}
 void display(const struct LinkedList* list){
     char* printable = (char*)malloc(list -> size * 2);
     struct Node* current = list -> head;
@@ -59,6 +71,7 @@ int main(){
     prepend(&list, 10);
     prepend(&list, 20);
     prepend(&list, 30);
+    pop(&list);
     display(&list);
     return 0;
 }
