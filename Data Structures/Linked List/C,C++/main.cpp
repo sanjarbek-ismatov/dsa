@@ -39,7 +39,14 @@ public:
         if(this -> is_empty()) {
             return nullptr;
         }
-        int
+        int* found = &this -> tail-> data;
+        Node* current = this -> head;
+        while(current->next && current -> next -> next != tail){
+            current = current -> next;
+        }
+        current->next = nullptr;
+        this ->tail = current;
+        return found;
     }
     void display(){
         std::string printable;
@@ -57,6 +64,7 @@ int main(){
     list->prepend(10);
     list->prepend(20);
     list->prepend(30);
+    list -> pop();
     list -> display();
     return 0;
 }
