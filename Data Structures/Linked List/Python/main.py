@@ -29,6 +29,18 @@ class LinkedList:
         self.head = node
         self.size += 1
 
+    def pop(self):
+        if self.is_empty():
+            return None
+        current = self.head
+        found = self.tail.data
+        while current.next and current.next.next != self.tail:
+            current = current.next
+        current.next = None
+        self.tail = current
+        self.size -= 1
+        return found
+
     def display(self):
         printable = ""
         current = self.head
@@ -45,4 +57,5 @@ llist = LinkedList()
 llist.prepend(10)
 llist.prepend(20)
 llist.prepend(30)
+llist.pop()
 llist.display()

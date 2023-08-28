@@ -29,6 +29,18 @@ public:
         }
         this -> size++;
     }
+    void prepend(int data){
+        Node* node = new Node(data);
+        node -> next = this -> head;
+        this -> head = node;
+        this -> size++;
+    }
+    int* pop(){
+        if(this -> is_empty()) {
+            return nullptr;
+        }
+        int
+    }
     void display(){
         std::string printable;
         Node* current = this -> head;
@@ -42,9 +54,9 @@ public:
 };
 int main(){
     auto* list = new LinkedList();
-    list->append(10);
-    list->append(20);
-    list->append(30);
+    list->prepend(10);
+    list->prepend(20);
+    list->prepend(30);
     list -> display();
     return 0;
 }

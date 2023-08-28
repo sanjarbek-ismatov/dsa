@@ -28,8 +28,15 @@ void append(struct LinkedList* list, int data){
     }
     list -> size++;
 }
+void prepend(struct LinkedList* list, int data){
+    struct Node* node = (struct Node*)malloc(sizeof(struct Node));
+    node -> data = data;
+    node -> next = list -> head;
+    list -> head = node;
+    list -> size++;
+}
 void display(const struct LinkedList* list){
-    char* printable = malloc(list -> size * 12);
+    char* printable = (char*)malloc(list -> size * 2);
     struct Node* current = list -> head;
     char temp[15];
     while(current){
@@ -37,9 +44,10 @@ void display(const struct LinkedList* list){
         strcat(printable, temp);
         current = current -> next;
     }
-    printf("%s", printable);
+    printf("%s\n", printable);
     free(printable);
 }
+
 void constructor(struct LinkedList* list){
     list -> head = NULL;
     list -> tail = NULL;
@@ -48,9 +56,9 @@ void constructor(struct LinkedList* list){
 int main(){
     struct LinkedList list;
     constructor(&list);
-    append(&list, 10);
-    append(&list, 20);
-    append(&list, 30);
+    prepend(&list, 10);
+    prepend(&list, 20);
+    prepend(&list, 30);
     display(&list);
     return 0;
 }
