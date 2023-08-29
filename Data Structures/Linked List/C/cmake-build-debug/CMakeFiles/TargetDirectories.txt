@@ -1,3 +1,0 @@
-D:/project/web/github/dsa/Data Structures/Linked List/C/cmake-build-debug/CMakeFiles/dsa.dir
-D:/project/web/github/dsa/Data Structures/Linked List/C/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/project/web/github/dsa/Data Structures/Linked List/C/cmake-build-debug/CMakeFiles/rebuild_cache.dir
