@@ -49,6 +49,18 @@ public:
         this -> size--;
         return found;
     }
+    void reverse(){
+        Node* prev = nullptr;
+        Node* current = this -> head;
+        Node* next = nullptr;
+        while(current != nullptr){
+            next = current -> next;
+            current -> next = prev;
+            prev = current;
+            current = next;
+        }
+        this -> head = prev;
+    }
     void display(){
         std::string printable;
         Node* current = this -> head;
@@ -65,7 +77,8 @@ int main(){
     list->prepend(10);
     list->prepend(20);
     list->prepend(30);
-    list -> pop();
+//    list -> pop();
+    list -> reverse();
     list -> display();
     return 0;
 }
