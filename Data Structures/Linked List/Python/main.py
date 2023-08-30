@@ -41,6 +41,16 @@ class LinkedList:
         self.size -= 1
         return found
 
+    def reverse(self):
+        prev = None
+        current = self.head
+        while current:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+        self.head = prev
+
     def display(self):
         printable = ""
         current = self.head
@@ -57,5 +67,6 @@ llist = LinkedList()
 llist.prepend(10)
 llist.prepend(20)
 llist.prepend(30)
-llist.pop()
+# llist.pop()
+llist.reverse()
 llist.display()
