@@ -2,6 +2,7 @@ class Node:
     def __init__(self, data) -> None:
         self.data = data
         self.next = None
+        self.prev = None
 
 
 class LinkedList:
@@ -19,15 +20,20 @@ class LinkedList:
             self.head = node
             self.tail = node
         else:
+            node.prev = self.tail
             self.tail.next = node
             self.tail = self.tail.next
         self.size += 1
 
     def prepend(self, data):
-        node = Node(data)
-        node.next = self.head
-        self.head = node
-        self.size += 1
+        if self.is_empty():
+            self.append(data)
+        else:
+            node = Node(data)
+            self.head.prev = node
+            node.next = self.head
+            self.head = node
+            self.size += 1
 
     def pop(self):
         if self.is_empty():
@@ -68,5 +74,5 @@ llist.prepend(10)
 llist.prepend(20)
 llist.prepend(30)
 # llist.pop()
-llist.reverse()
+# llist.reverse()
 llist.display()
