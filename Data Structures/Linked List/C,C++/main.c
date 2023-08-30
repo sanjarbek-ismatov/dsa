@@ -47,6 +47,17 @@ int* pop(struct LinkedList* list){
     list -> size--;
     return found;
 }
+void reverse(struct LinkedList* list){
+    struct Node* prev = NULL, *next = NULL;
+    struct Node* current = list -> head;
+    while(current != NULL){
+        next = current -> next;
+        current -> next = prev;
+        prev = current;
+        current = next;
+    }
+    list -> head = prev;
+}
 void display(const struct LinkedList* list){
     char* printable = (char*)malloc(list -> size * 2);
     struct Node* current = list -> head;
@@ -71,7 +82,8 @@ int main(){
     prepend(&list, 10);
     prepend(&list, 20);
     prepend(&list, 30);
-    pop(&list);
+//    pop(&list);
+    reverse(&list);
     display(&list);
     return 0;
 }

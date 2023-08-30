@@ -50,9 +50,8 @@ public:
         return found;
     }
     void reverse(){
-        Node* prev = nullptr;
+        Node* prev = nullptr, *next = nullptr;
         Node* current = this -> head;
-        Node* next = nullptr;
         while(current != nullptr){
             next = current -> next;
             current -> next = prev;
