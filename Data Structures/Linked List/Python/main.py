@@ -22,7 +22,7 @@ class LinkedList:
         else:
             node.prev = self.tail
             self.tail.next = node
-            self.tail = self.tail.next
+            self.tail = node
         self.size += 1
 
     def prepend(self, data):
@@ -48,14 +48,15 @@ class LinkedList:
         return found
 
     def reverse(self):
-        prev = None
+        temp = None
         current = self.head
-        while current:
-            next_node = current.next
-            current.next = prev
-            prev = current
-            current = next_node
-        self.head = prev
+        self.tail = current
+        while current is not None:
+            temp = current.prev
+            current.prev = current.next
+            current.next = temp
+            current = current.prev
+        self.head = temp.prev if temp else None
 
     def display(self):
         printable = ""
@@ -74,5 +75,5 @@ llist.prepend(10)
 llist.prepend(20)
 llist.prepend(30)
 # llist.pop()
-# llist.reverse()
+llist.reverse()
 llist.display()
