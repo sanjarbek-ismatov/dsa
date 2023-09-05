@@ -49,6 +49,9 @@ public:
         this -> size--;
         return found;
     }
+    int peek(){
+        return this->head -> data;
+    }
     void reverse(){
         Node* prev = nullptr, *next = nullptr;
         Node* current = this -> head;
@@ -71,14 +74,14 @@ public:
         std::cout << printable << std::endl;
     };
 };
-int main(){
-    auto* list = new LinkedList();
-    list->prepend(10);
-    list->prepend(20);
-    list->prepend(30);
-//    list -> pop();
-    list -> reverse();
-    list -> display();
-    return 0;
-}
+//int main(){
+//    auto* list = new LinkedList();
+//    list->prepend(10);
+//    list->prepend(20);
+//    list->prepend(30);
+////    list -> pop();
+//    list -> reverse();
+//    list -> display();
+//    return 0;
+//}
 
