@@ -3,30 +3,12 @@
 #include <cstdarg>
 #include <algorithm>
 using namespace std;
-vector<int> sym(int count, ...){
-    vector<int> result;
-    va_list args;
-    va_start(args, count);
-    for(int i = 0; i < count; i++){
-        int* arg = va_arg(args, int*);
-        cout << arg[0] << endl;
-    }
-    va_end(args);
-    return result;
-}
-vector<int> sym_difference(vector<int> arr1, vector<int> arr2){
-    vector<int> merged_result;
-
-    return merged_result;
-}
+vector<int> sym_difference(vector<int> arr1, vector<int> arr2);
 class Tool{
 public:
-    static bool includes(vector<int> arr1, vector<int> arr2){
-        for(int item: arr1){
-            auto from_arr2 = find(arr2.begin(), arr1.end(), item);
-            if(from_arr2 == arr2.end()) return true;
-        }
-        return false;
+    static bool includes(vector<int> arr, int item){
+        auto from_arr2 = find(arr.begin(), arr.end(), item);
+        return from_arr2 != arr.end();
     }
     static void print(vector<int> result){
         string output = "[";
@@ -37,14 +19,41 @@ public:
         output += "]";
         cout << output << endl;
     }
-
+    static void iterator(vector<int> &arr1, vector<int> &arr2, vector<int> &merged_result) {
+        for(int item1: arr1){
+            if(!(Tool::includes(arr2, item1) && Tool::includes(merged_result, item1))){
+                merged_result.push_back(item1);
+            }
+        }
+    }
 };
-
-
+vector<int> sym(int count, ...){
+    vector<int> result;
+    va_list args;
+    va_start(args, count);
+    for(int i = 0; i < count; i++){
+        int* arg = va_arg(args, int*);
+        int size_of_arg = sizeof(arg) / sizeof(int);
+        vector<int> arg_as_vector(arg, arg + size_of_arg);
+        if(result.size() == 0){
+            result = arg_as_vector;
+        }
+        result = sym_difference(result, arg_as_vector);
+    }
+    va_end(args);
+    return result;
+}
+vector<int> sym_difference(vector<int> arr1, vector<int> arr2){
+    vector<int> merged_result;
+    Tool tools;
+    tools.iterator(arr1, arr2, merged_result);
+    tools.iterator(arr2, arr1, merged_result);
+    return merged_result;
+}
 int main(){
-    cout << "Hello World!" << endl;
     int array1[] = {1, 2, 3};
     int array2[] = {5, 2, 1, 4};
-    sym(4, array1, array2);
+    vector<int> result = sym(2, array1, array2);
+    Tool::print(result);
     return 0;
 }
