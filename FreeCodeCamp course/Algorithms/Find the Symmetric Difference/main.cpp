@@ -27,22 +27,20 @@ public:
         }
     }
 };
-template<typename... Args>
-vector<int> sym(const Args... args){
+vector<int> sym(int numArgs, ...){
     vector<int> result;
-    result = sym_difference(result, vector<int> {});
-//    va_list args;
-//    va_start(args, numArgs);
-//    for(int i = 0; i < numArgs; i++){
-//        int* arg = va_arg(args, int*);
-//        int size_of_arg = sizeof(arg) / sizeof(int);
-//        vector<int> arg_as_vector(arg, arg + size_of_arg);
-//        if(result.size() == 0){
-//            result = arg_as_vector;
-//        }
-//        result = sym_difference(result, arg_as_vector);
-//    }
-//    va_end(args);
+    va_list args;
+    va_start(args, numArgs);
+    for(int i = 0; i < numArgs; i++){
+        int* arg = va_arg(args, int*);
+        int size_of_arg = va_arg(args, int);
+        vector<int> arg_as_vector(arg, arg + size_of_arg);
+        if(result.size() == 0){
+            result = arg_as_vector;
+        }
+        result = sym_difference(result, arg_as_vector);
+    }
+    va_end(args);
     return result;
 }
 vector<int> sym_difference(vector<int> arr1, vector<int> arr2){
@@ -55,7 +53,8 @@ vector<int> sym_difference(vector<int> arr1, vector<int> arr2){
 int main(){
     int array1[] = {1, 2, 3};
     int array2[] = {5, 2, 1, 4};
-    vector<int> result = sym(array1, array2);
+    cout << sizeof(array1) << endl; // the size is 12
+    vector<int> result = sym(2, array1, array2);
     Tool::print(result);
     return 0;
 }
