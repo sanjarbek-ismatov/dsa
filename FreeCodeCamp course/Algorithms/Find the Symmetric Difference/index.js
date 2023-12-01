@@ -12,4 +12,4 @@ function sym(...args) {
     return args.reduce(symDifference);
 }
 console.log(sym([1, 2, 3], [5, 2, 1, 4]));
-console.log(sym([1, 2, 3, 3], [5, 2, 1, 4]))
+// console.log(sym([1, 2, 3, 3], [5, 2, 1, 4]))
