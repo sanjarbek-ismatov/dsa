@@ -10,4 +10,5 @@
 *.check_cache
 *.log
 *.yaml
+build
 cmake-build-debug
