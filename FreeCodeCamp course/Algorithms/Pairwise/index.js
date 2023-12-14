@@ -20,6 +20,7 @@ function pairwise(arr, target){
                     if (arr[i] + arr[j] === target) {
                         sum += i + j
                         usedIndices.push(i, j)
+
                     }
                 }
             }
