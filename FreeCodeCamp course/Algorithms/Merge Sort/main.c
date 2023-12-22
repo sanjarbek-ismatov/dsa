@@ -27,18 +27,23 @@ int * merge(const int * left, int left_size, const int * right, int right_size){
 }
 int * merge_sort(int * arr, int size){
     if(size <= 1) return arr;
-    const int * left = merge_sort(slice(arr, 0, 1), 0);
-    const int * right = merge_sort(slice(arr, 1, size), 0);
-    return merge(left, 10, right, 10);
+    int mid = floor(size / 2);
+    const int * left = merge_sort(slice(arr, 0, mid), mid + 1);
+    const int * right = merge_sort(slice(arr, mid, size), size - mid - 1);
+    return merge(left, mid + 1, right, size - mid - 1);
 }
 
-void print(const int * arr){
-    char * string = "";
-    for(int i = 0; i ){
-
+void print(const int * arr, int size){
+    char * string = "[ ";
+    for(int i = 0; i < size; i++){
+        sprintf(string, ", %d", arr[i]);
     }
+    strcpy(string, " ]");
+    printf("%s", string);
 }
 int main(){
-
+    int arr[] = {1, 4, 3, 2, 5};
+    const int * sorted = merge_sort(arr, 5);
+    print(sorted, 5);
     return 0;
 }
