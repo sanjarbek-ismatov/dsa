@@ -30,3 +30,29 @@ void print_arr(int arr[], int length){
     result[strlen(result)] = '}';
     printf("%s\n", result);
 }
+
+int* slice(int arr[], int start, int end){
+    int* temp = (int*)malloc((end - start + 1) * sizeof(int));
+    for(int i = start; i < end; i++){
+        temp[i] = arr[i];
+    }
+    return temp;
+}
+
+
+
+int sum(int* arr, int size){
+   if(size == 0) return 0;
+   return arr[size - 1] + sum(arr, size - 1); 
+}
+
+int sum_dq(int* arr, int start, int end){
+    if(start > end) return 0;
+    if(start == end) return arr[start];
+    
+    int middle = (start + end) / 2;
+    int left_sum = sum_dq(arr, start, middle);
+    int right_sum = sum_dq(arr, middle + 1, end);
+
+    return left_sum + right_sum;
+}
