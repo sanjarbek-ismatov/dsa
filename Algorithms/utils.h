@@ -6,7 +6,7 @@ int length(int size){
 }
 
 int find_min(int arr[], int length, int start, int end){
-    int min = 0;
+    int min = start;
     for(int i = start + 1; i < length; i++){
         if(arr[min] > arr[i]){
             min = i;
