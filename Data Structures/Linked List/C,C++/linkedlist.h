@@ -5,7 +5,7 @@
 
 typedef struct Node{
     int data;
-    Node* next;
+    struct Node* next;
 } Node;
 typedef struct {
     Node* head;
@@ -59,7 +59,7 @@ void reverse(LinkedList* list){
     list -> head = prev;
 }
 void display(const LinkedList* list){
-    char* printable = (char*)malloc(list -> size * 2);
+    char printable[list -> size];
     Node* current = list -> head;
     char temp[15];
     while(current){
@@ -68,7 +68,6 @@ void display(const LinkedList* list){
         current = current -> next;
     }
     printf("%s\n", printable);
-    free(printable);
 }
 
 void constructor(LinkedList* list){
